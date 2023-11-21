@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, Input, RTE, Select } from '..';
 import appwriteService from '../../appwrite/config';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -134,7 +134,9 @@ export default function PostForm({ post }) {
                 <Button
                     type="submit"
                     bgColor={post ? 'bg-green-500' : undefined}
-                    className="w-full"
+                    className={`w-full ${
+                        post ? `hover:bg-green-800` : `hover:bg-blue-800`
+                    }  transition duration-200 ease-in-out`}
                 >
                     {post ? 'Update' : 'Submit'}
                 </Button>

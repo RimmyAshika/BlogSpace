@@ -1,5 +1,6 @@
 import { Client, Databases, ID, Query, Storage } from 'appwrite';
 import conf from '../conf/conf.js';
+import authService from './auth.js';
 
 export class Service {
     client = new Client();
@@ -87,6 +88,32 @@ export class Service {
             );
         } catch (error) {
             console.log('Appwrite service :: getPosts :: error', error);
+            return false;
+        }
+    }
+
+    // to get the current user id
+    async getUserId() {
+        const user = await authService.getCurrentUser();
+        if (user) {
+            return user.$id;
+        } else {
+            console.log('No user is currently logged in');
+            return null;
+        }
+    }
+
+    async getMyPosts(queries = [Query.equal('', '')]) {
+        const userId = await this.getUserId();
+        queries.push(Query.equal('userId', userId));
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries
+            );
+        } catch (error) {
+            console.log('Appwrite service :: getMyPosts :: error', error);
             return false;
         }
     }
