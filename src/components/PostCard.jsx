@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import appwriteService from '../appwrite/config';
 
-function PostCard({ $id, title, featuredImage }) {
+function PostCard(post) {
+    const {  $id, title, featuredImage  } = post
     return (
-        <Link to={`/post/${$id}`}>
+        <Link to={`/post/${$id}`} className='w-full'>
             <div className="w-full bg-gray-100 rounded-xl p-4">
                 <div className="w-full justify-center mb-4">
                     <img

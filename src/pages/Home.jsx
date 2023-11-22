@@ -1,45 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
-import { Container, PostCard } from '../components';
-
+import { Container, PostCard } from '../components'
+import { useSelector } from 'react-redux';
+import Loading from '../components/Loading';
+import { useNavigate } from 'react-router-dom';
+import Middleware from '../components/Middleware';
 function Home() {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
-
+    const [loading, setLoading] = useState(false)
+    const authStatus = useSelector((state) => state.auth.status);
     useEffect(() => {
+        setLoading(true)
         appwriteService.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents);
             }
+            setLoading(false)
         });
-    }, []);
-
-    if (posts.length === 0) {
-        return (
-            <div className="w-full py-8 mt-4 text-center">
-                <Container>
-                    <div className="flex flex-wrap">
-                        <div className="p-2 w-full">
-                            <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Login to read posts
-                            </h1>
-                        </div>
-                    </div>
-                </Container>
-            </div>
-        );
-    }
+    }, [authStatus, navigate]);
     return (
-        <div className="w-full py-8">
+        <>
+        <div className="w-full">
             <Container>
-                <div className="flex flex-wrap">
-                    {posts.map((post) => (
-                        <div key={post.$id} className="p-2 w-1/4">
-                            <PostCard {...post} />
-                        </div>
-                    ))}
-                </div>
+                {loading && <Loading />} {/* Display loading indicator while posts are being fetched */}
+                {!loading && posts.length === 0 && <Middleware />}
+                {!loading && posts.length > 0 && (
+                    <div className="flex flex-wrap">
+                        {posts.map((post) => (
+                            <div key={post.$id} className="p-2 w-1/4">
+                                <PostCard {...post} />
+                            </div>
+                        ))}
+                    </div>
+                )}
             </Container>
         </div>
+        </>
     );
 }
 

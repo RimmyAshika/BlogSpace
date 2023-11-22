@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Logo, LogoutBtn } from '../index';
@@ -36,21 +35,22 @@ function Header() {
     ];
 
     return (
-        <header className="py-3 shadow bg-gray-500">
+        <header className="py-3 sticky top-0 z-20 shadow-lg backdrop-filter backdrop-blur-md">
             <Container>
-                <nav className="flex">
-                    <div className="mr-4">
-                        <Link to="/">
-                            <Logo width="70px" />
+                <nav className="flex items-center justify-between">
+                    <div className="flex items-center justify-center gap-3">
+                        <Link to="/" className='flex items-center gap-2'>
+                            <Logo />
+                        <span className='text-2xl font-medium'>BlogSpace</span>
                         </Link>
                     </div>
-                    <ul className="flex ml-auto">
+                    <ul className="flex items-center gap-4">
                         {navItems.map((item) =>
                             item.active ? (
                                 <li key={item.name}>
                                     <button
                                         onClick={() => navigate(item.slug)}
-                                        className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                                        className="inline-bock py-2 px-3 transition-all duration-500 hover:bg-slate-800 hover:text-white rounded-full"
                                     >
                                         {item.name}
                                     </button>

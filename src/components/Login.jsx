@@ -5,14 +5,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import authService from '../appwrite/auth';
 import { login as authLogin } from '../store/authSlice';
 import { Button, Input, Logo } from './index';
+import Loading from './Loading';
+import InputComponent from './InputComponent';
 
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const login = async (data) => {
+        setLoading(true)
         setError('');
         try {
             const session = await authService.login(data);
@@ -24,39 +28,27 @@ function Login() {
             }
         } catch (error) {
             setError(error.message);
+        } finally{
+            setLoading(false);
         }
     };
     return (
-        <div className="flex items-center justify-center w-full">
-            <div
-                className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-            >
-                <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
-                </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">
-                    Sign in to your account
-                </h2>
-                <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
-                </p>
-                {error && (
-                    <p className="text-red-600 mt-8 text-center">{error}</p>
-                )}
-                <form onSubmit={handleSubmit(login)} className="mt-8">
-                    <div className="space-y-5">
-                        <Input
+        <>
+        {
+            loading ? <Loading /> :
+            <div className='flex mt-14'>
+            <section className='mx-auto'>
+                <form onSubmit={handleSubmit(login)} className="w-[400px] p-10 py-14 backdrop-filter rounded-lg backdrop-blur-lg">
+                <h1 className='text-3xl font-bold'>Already a User</h1>
+                {error && 
+                     <p className="text-red-600 mt-8 text-center">{error}</p>
+                }
+                    <div className="space-y-5 mt-4">
+                        <InputComponent
                             label="Email: "
                             placeholder="Enter your email"
                             type="email"
+                            icon="fi fi-sr-at"
                             {...register('email', {
                                 required: true,
                                 validate: {
@@ -68,22 +60,26 @@ function Login() {
                                 },
                             })}
                         />
-                        <Input
+                        <InputComponent
                             label="Password: "
                             type="password"
+                            icon="fi fi-rr-key"
                             placeholder="Enter your password"
                             {...register('password', {
                                 required: true,
                             })}
                         />
-                        <Button type="submit" className="w-full">
-                            Sign in
+                        <Button type="submit" className="w-[50%] bg-black">
+                            Login
                         </Button>
                     </div>
                 </form>
-            </div>
+            </section>
         </div>
-    );
+        
 }
+</>
+        );
+    }
 
 export default Login;
