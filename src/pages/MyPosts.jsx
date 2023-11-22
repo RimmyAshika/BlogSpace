@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
-import { Container, PostCard } from '../components/';
+import { Container, PostCard } from '../components';
 import Loading from '../components/Loading';
 
 function AllPosts() {
@@ -8,7 +8,7 @@ function AllPosts() {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true)
-        appwriteService.getPosts([]).then((posts) => {
+        appwriteService.getMyPosts([]).then((posts) => {
             if (posts) {
                 setPosts(posts.documents);
             }

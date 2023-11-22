@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Input, RTE, Select } from '..';
 import appwriteService from '../../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loading from '../Loading';
 
 export default function PostForm({ post }) {
+    const [loading, setLoading] = useState(false)
     const { register, handleSubmit, watch, setValue, control, getValues } =
         useForm({
             defaultValues: {
@@ -16,11 +18,11 @@ export default function PostForm({ post }) {
                 status: post?.status || 'active',
             },
         });
-
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
+        setLoading(true)
         if (post) {
             const file = data.image[0]
                 ? await appwriteService.uploadFile(data.image[0])
@@ -38,6 +40,7 @@ export default function PostForm({ post }) {
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
             }
+            setLoading(false)
         } else {
             const file = await appwriteService.uploadFile(data.image[0]);
 
@@ -80,6 +83,9 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
+        <>
+        {
+            loading ? <Loading /> :
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
@@ -139,6 +145,7 @@ export default function PostForm({ post }) {
                     {post ? 'Update' : 'Submit'}
                 </Button>
             </div>
-        </form>
+        </form>}
+        </>
     );
 }

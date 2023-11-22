@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
 import { Container, PostCard } from '../components'
-import { useSelector } from 'react-redux';
 import Loading from '../components/Loading';
-import { useNavigate } from 'react-router-dom';
 import Middleware from '../components/Middleware';
 function Home() {
-    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false)
-    const authStatus = useSelector((state) => state.auth.status);
     useEffect(() => {
         setLoading(true)
         appwriteService.getPosts().then((posts) => {
@@ -18,7 +14,7 @@ function Home() {
             }
             setLoading(false)
         });
-    }, [authStatus, navigate]);
+    }, []);
     return (
         <>
         <div className="w-full">
@@ -26,7 +22,7 @@ function Home() {
                 {loading && <Loading />} {/* Display loading indicator while posts are being fetched */}
                 {!loading && posts.length === 0 && <Middleware />}
                 {!loading && posts.length > 0 && (
-                    <div className="flex flex-wrap">
+                    <div className='flex flex-col gap-4 mx-auto'>
                         {posts.map((post) => (
                             <div key={post.$id} className="p-2 w-1/4">
                                 <PostCard {...post} />
@@ -34,7 +30,7 @@ function Home() {
                         ))}
                     </div>
                 )}
-            </Container>
+,            </Container>
         </div>
         </>
     );

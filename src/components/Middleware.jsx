@@ -5,12 +5,12 @@ function Middleware() {
   <div className="flex items-center justify-center px-2 pt-24 md:pt-0">
     <div className="flex items-center flex-1">
       <div className="flex flex-col items-start">
-        <h1 className="text-7xl font-medium mb-6">Stay Curious.</h1>
-        <p className="text-2xl">
+        <h1 className="text-7xl font-medium mb-6 text-white">Stay Curious.</h1>
+        <p className="text-2xl text-white">
           Discover Stories, 
         </p>
-          <p className="mb-4 text-2xl">thinking, and expertise from writers on any topic</p>
-        <button className="rounded-2xl bg-black px-4 hover:text-black transition-all duration-500 py-2 text-white hover:bg-white border-2 border-black">
+          <p className="mb-4 text-2xl text-white">thinking, and expertise from writers on any topic</p>
+        <button className="rounded-2xl bg-black px-4 hover:text-black transition-all duration-500 py-2 text-white hover:bg-inherit border-2 border-black">
             <Link to="/login">Start reading</Link>
         </button>
       </div>

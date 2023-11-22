@@ -14,7 +14,7 @@ import Signup from './pages/Signup';
 
 import Post from './pages/Post';
 
-import AllPosts from './pages/AllPosts';
+import MyPosts from './pages/MyPosts.jsx';
 
 const router = createBrowserRouter([
     {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication>
                         {' '}
-                        <AllPosts />
+                        <MyPosts />
                     </AuthLayout>
                 ),
             },

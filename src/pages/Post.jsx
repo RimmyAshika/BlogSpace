@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import appwriteService from '../appwrite/config';

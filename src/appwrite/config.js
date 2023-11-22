@@ -1,5 +1,6 @@
 import { Client, Databases, ID, Query, Storage } from 'appwrite';
 import conf from '../conf/conf.js';
+import authService from './auth.js';
 
 export class Service {
     client = new Client();
@@ -29,7 +30,7 @@ export class Service {
                 }
             );
         } catch (error) {
-            console.log('Appwrite serive :: createPost :: error', error);
+            console.log('Appwrite service :: createPost :: error', error);
         }
     }
 
@@ -47,7 +48,7 @@ export class Service {
                 }
             );
         } catch (error) {
-            console.log('Appwrite serive :: updatePost :: error', error);
+            console.log('Appwrite service :: updatePost :: error', error);
         }
     }
 
@@ -60,7 +61,7 @@ export class Service {
             );
             return true;
         } catch (error) {
-            console.log('Appwrite serive :: deletePost :: error', error);
+            console.log('Appwrite service :: deletePost :: error', error);
             return false;
         }
     }
@@ -73,7 +74,7 @@ export class Service {
                 slug
             );
         } catch (error) {
-            console.log('Appwrite serive :: getPost :: error', error);
+            console.log('Appwrite service :: getPost :: error', error);
             return false;
         }
     }
@@ -86,7 +87,33 @@ export class Service {
                 queries
             );
         } catch (error) {
-            console.log('Appwrite serive :: getPosts :: error', error);
+            console.log('Appwrite service :: getPosts :: error', error);
+            return false;
+        }
+    }
+
+    // to get the current user id
+    async getUserId() {
+        const user = await authService.getCurrentUser();
+        if (user) {
+            return user.$id;
+        } else {
+            console.log('No user is currently logged in');
+            return null;
+        }
+    }
+
+    async getMyPosts(queries = [Query.equal('', '')]) {
+        const userId = await this.getUserId();
+        queries.push(Query.equal('userId', userId));
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries
+            );
+        } catch (error) {
+            console.log('Appwrite service :: getMyPosts :: error', error);
             return false;
         }
     }
@@ -101,7 +128,7 @@ export class Service {
                 file
             );
         } catch (error) {
-            console.log('Appwrite serive :: uploadFile :: error', error);
+            console.log('Appwrite service :: uploadFile :: error', error);
             return false;
         }
     }
@@ -111,7 +138,7 @@ export class Service {
             await this.storage.deleteFile(conf.appwriteStorageId, fileId);
             return true;
         } catch (error) {
-            console.log('Appwrite serive :: deleteFile :: error', error);
+            console.log('Appwrite service :: deleteFile :: error', error);
             return false;
         }
     }
