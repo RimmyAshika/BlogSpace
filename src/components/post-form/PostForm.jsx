@@ -9,6 +9,7 @@ import Loading from '../Loading';
 
 export default function PostForm({ post }) {
     const [loading, setLoading] = useState(false)
+    const [warning, setWarning] = useState('');
     const { register, handleSubmit, watch, setValue, control, getValues } =
         useForm({
             defaultValues: {
@@ -82,6 +83,39 @@ export default function PostForm({ post }) {
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
 
+    const checkImageSize = (event) => {
+        console.log('Function called');
+        const file = event.target.files[0];
+      
+        if (file) {
+          const image = new Image();
+          const reader = new FileReader();
+      
+          reader.onload = (e) => {
+            image.src = e.target.result;
+      
+            image.onload = () => {
+              console.log('Image loaded');
+              const maxWidth = 500;
+              const maxHeight = 500;
+      
+              if (image.width > maxWidth || image.height > maxHeight) {
+                console.log('Image size exceeded');
+                setWarning('Image size exceeds the allowed dimensions (500x500).');
+                // Clear the file input to prevent uploading the image
+                event.target.value = '';
+              } else {
+                // Clear any previous warnings
+                setWarning('');
+              }
+            };
+          };
+      
+          reader.readAsDataURL(file);
+        }
+      };
+      
+
     return (
         <>
         {
@@ -114,12 +148,14 @@ export default function PostForm({ post }) {
             </div>
             <div className="w-1/3 px-2">
                 <Input
+                    onchange={checkImageSize}
                     label="Featured Image :"
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register('image', { required: !post })}
                 />
+                {warning && <div style={{ color: 'red' }}>{warning}</div>}
                 {post && (
                     <div className="w-full mb-4">
                         <img

@@ -39,7 +39,7 @@ function Signup() {
              loading ? <Loading /> : 
         <div className='flex mt-14'>
             <section className='mx-auto'>
-                <form onSubmit={handleSubmit(signup)} className='w-[400px] p-10 py-14 backdrop-filter rounded-lg backdrop-blur-lg'>
+                <form onSubmit={handleSubmit(signup)} className='w-[400px] p-10 py-10 rounded-lg bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg'>
                 <h1 className='text-3xl font-bold'>Welcome</h1>
                 {error && 
                      <p className="text-red-600 mt-8 text-center">{error}</p>
@@ -80,7 +80,7 @@ function Signup() {
                                 required: true,
                             })}
                         />
-                        <Button type="submit" className="w-[50%] bg-black">
+                        <Button type="submit" className="w-[50%] bg-black border-2 border-black hover:bg-white hover:text-black transition-all duration-500">
                             Signup
                         </Button>
                     </div>
