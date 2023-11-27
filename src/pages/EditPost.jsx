@@ -20,7 +20,7 @@ function EditPost() {
         }
     }, [slug, navigate]);
     return (
-        <div className="py-8">
+        <div className="py-8 flex text-left">
             <Container>
                 <PostForm post={post} />
             </Container>
