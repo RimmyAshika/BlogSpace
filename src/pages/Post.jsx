@@ -33,9 +33,9 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
+        <div className="py-8 mx-80">
             <Container>
-                <div className="w-auto aspect-video object-cover flex justify-center mb-4 relative border rounded-xl p-2">
+                <div className="w-auto aspect-video object-cover flex justify-center mb-4 relative border rounded-xl p-2  bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
@@ -63,9 +63,13 @@ export default function Post() {
                     )}
                 </div>
                 <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                    <h1 className="text-3xl rounded-lg p-4 text-white font-bold bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg">
+                        {post.title}
+                    </h1>
                 </div>
-                <div className="browser-css">{parse(post.content)}</div>
+                <div className="browser-css text-justify overflow-hidden rounded-xl p-8 leading-8 bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">
+                    {parse(post.content)}
+                </div>
             </Container>
         </div>
     ) : null;
