@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 import './App.css';
 import authService from './appwrite/auth';
 import { Footer, Header } from './components';
-import { login, logout } from './store/authSlice';
 import Loading from './components/Loading';
+import { login, logout } from './store/authSlice';
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -32,10 +32,12 @@ function App() {
                 <main>
                     <Outlet />
                 </main>
-                {/* <Footer /> */}
+                <Footer />
             </div>
         </div>
-    ) : <Loading />;
+    ) : (
+        <Loading />
+    );
 }
 
 export default App;

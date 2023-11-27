@@ -3,7 +3,7 @@ import appwriteService from '../appwrite/config';
 import { Container, PostCard } from '../components';
 import Loading from '../components/Loading';
 
-function AllPosts() {
+function MyPosts() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false)
     useEffect(() => {
@@ -36,4 +36,4 @@ function AllPosts() {
     );
 }
 
-export default AllPosts;
+export default MyPosts;

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-import appwriteService from "../appwrite/config";
+import parse from 'html-react-parser';
+import { Link } from 'react-router-dom';
+import appwriteService from '../appwrite/config';
 
 function PostCard(post) {
   const { $id, title, featuredImage, content } = post;
@@ -21,9 +22,10 @@ function PostCard(post) {
           Read more
           </Link>
         </div>
-      </div>
-    </div>
-  );
+
+        </div>
+        </div>
+    );
 }
 
 export default PostCard;
