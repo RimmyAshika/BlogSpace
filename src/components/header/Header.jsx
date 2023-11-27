@@ -51,9 +51,14 @@ function Header() {
                         </Link>
                     </div>
                     <div className='relative md:hidden  transition-all duration-500' onClick={handlenavopen}>
-                        {navopen ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-bars"></i>}
+                        {/* {navopen ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-bars"></i>} */}
+                        <div className='flex flex-col gap-1'>
+                            <div className='w-5 h-1 bg-black'></div>
+                            <div className='w-5 h-1 bg-black'></div>
+                            <div className='w-5 h-1 bg-black'></div>
+                        </div>
                     </div>
-                    <ul className={`${navopen ? 'flex flex-col right-0 top-16' : '-right-[450px] flex flex-col top-0 gap-7'} md:hidden -z-20 transition-all duration-500 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg items-center right-0 p-10 gap-7 w-full absolute md:gap-4`}>
+                    <ul className={`${navopen ? 'flex flex-col top-0' : ' flex flex-col -top-96 gap-7'} md:hidden -z-20 transition-all duration-500 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg items-center right-0 p-10 gap-7 w-full absolute md:gap-4`}>
                         {navItems.map((item) =>
                             item.active ? (
                                 <li key={item.name}>

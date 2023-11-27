@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import appwriteService from '../appwrite/config';
 
