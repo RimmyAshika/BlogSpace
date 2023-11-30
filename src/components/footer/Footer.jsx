@@ -16,7 +16,7 @@ function Footer() {
                                 <p className="text-sm text-gray-600">
                                     &copy; Copyright 2023. All Rights Reserved
                                     by BlogSpace ||{' '}
-                                    <Link to="https://github.com/AnikAdhikari7/WeBlog">
+                                    <Link to="https://github.com/AnikAdhikari7/BlogSpace">
                                         GitHub
                                     </Link>
                                 </p>

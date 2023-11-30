@@ -18,7 +18,9 @@ function PostCard(post) {
                     <h1 className="text-4xl font-bold text-start line-clamp-1">
                         {title}
                     </h1>
-                    <p className="text-xl line-clamp-1">{parse(content)}</p>
+                    <p className="text-xl line-clamp-1 text-start">
+                        {parse(content)}
+                    </p>
                     <Link
                         to={`/post/${$id}`}
                         className="rounded-md border-2 border-black bg-black px-3 py-2 text-white transition-all duration-500 hover:bg-inherit hover:text-black"
