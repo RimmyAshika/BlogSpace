@@ -24,14 +24,17 @@ function MyPosts() {
                 <div className="w-full py-8">
                     <Container>
                         <div className="flex flex-col gap-4 mx-auto">
-                            {posts.map((post) => (
-                                <div
-                                    key={post.$id}
-                                    className="p-2 w-full mx-auto"
-                                >
-                                    <PostCard {...post} />
-                                </div>
-                            ))}
+                            {posts
+                                .slice()
+                                .reverse()
+                                .map((post) => (
+                                    <div
+                                        key={post.$id}
+                                        className="p-2 w-full mx-auto"
+                                    >
+                                        <PostCard {...post} />
+                                    </div>
+                                ))}
                         </div>
                     </Container>
                 </div>

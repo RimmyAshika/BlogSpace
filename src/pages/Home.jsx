@@ -24,14 +24,17 @@ function Home() {
                     {!loading && posts.length === 0 && <Middleware />}
                     {!loading && posts.length > 0 && (
                         <div className="flex flex-col gap-4 mx-auto">
-                            {posts.map((post) => (
-                                <div
-                                    key={post.$id}
-                                    className="p-2 w-full mx-auto"
-                                >
-                                    <PostCard {...post} />
-                                </div>
-                            ))}
+                            {posts
+                                .slice()
+                                .reverse()
+                                .map((post) => (
+                                    <div
+                                        key={post.$id}
+                                        className="p-2 w-full mx-auto"
+                                    >
+                                        <PostCard {...post} />
+                                    </div>
+                                ))}
                         </div>
                     )}
                     ,{' '}
