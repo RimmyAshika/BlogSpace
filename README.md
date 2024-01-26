@@ -4,10 +4,17 @@
 
 <br/>
 
-![home1](./public/ss/home1.png)
-![home2](./public/ss/home2.png)
-![blog](./public/ss/blog.png)
-![post](./public/ss/post.png)
+### Home Page
+<img src="./public/ss/home1.png" alt="Home Page" width="500"/>
+
+### Home Page
+<img src="./public/ss/home2.png" alt="Home Page" width="500"/>
+
+### Blog Page
+<img src="./public/ss/blog.png" alt="Blog Page" width="500"/>
+
+### Post Page
+<img src="./public/ss/post.png" alt="Post Page" width="500"/>
 
 <br/>
 
