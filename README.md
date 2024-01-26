@@ -4,10 +4,10 @@
 
 <br/>
 
-![Screenshot](./public/ss/home1.png)
-![Screenshot](./public/ss/home2.png)
-![Screenshot](./public/ss/blog.png)
-![Screenshot](./public/ss/post.png)
+![home1](./public/ss/home1.png)
+![home2](./public/ss/home2.png)
+![blog](./public/ss/blog.png)
+![post](./public/ss/post.png)
 
 <br/>
 
