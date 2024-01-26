@@ -29,8 +29,14 @@ To install the project, follow these steps:
 
 ## 🎮 Usage
 
-To run the project, use the command: `npm run dev`
-To build the project, use the command: `npm run build`
+To run the project, use the command:
+```bash
+npm run dev
+```
+To build the project, use the command:
+```bash
+npm run build
+```
 
 <br/>
 
@@ -49,7 +55,3 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## 📞 Contact
 
 If you have any questions, feel free to reach out to me at developwithanik@gmail.com.
-
-```
-
-```
