@@ -20,7 +20,7 @@
 
 ## 📖 Description
 
-BlogSpace is a blog web application built with React (Vite) and Appwrite. It allows users to create, read, update, and delete blog posts anonymously. The application uses Appwrite's authentication, database, and storage services. The application is deployed on Netlify.
+BlogSpace is a blog web application built with React (Vite) and Appwrite. It allows users to create, read, update, and delete blog posts anonymously. The application uses Appwrite's authentication, database, and storage services. The application is deployed on Vercel.
 
 <br/>
 
