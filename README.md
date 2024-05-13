@@ -59,6 +59,3 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 <br/>
 
-## 📞 Contact
-
-If you have any questions, feel free to reach out to me at developwithanik@gmail.com.
